@@ -7,44 +7,84 @@ using namespace std;
 
 
 
+void Game::game(Game& game) {
+    do{
+   
+        game.table(game);
+        int num = 0;
+        cout << "Jogadores online : " << game.player1Name << " & " << game.player2Name << endl;
+        cout << "Qual a sua jogada -> Escolha entre 0 a 8  " << " Jogador da vez : " << game.playerTurn << endl;
+        cin >> num;
 
+        if (num <= 2) {
+            if(game.board[0][num] == " "){
+                game.board[0][num] = game.playerTurn;
+                game.changePlayerTurn(game);
+            }
+            else {
+                cout << "Posicao ja ocupada" << endl;
+            }
+           
 
-void Game::startGame(Game game) {
-	
+        }
+        else if (num <= 5) {
+            if(game.board[1][static_cast<std::vector<std::string, std::allocator<std::string>>::size_type>(num) - 3] == " "){
+                game.board[1][static_cast<std::vector<std::string, std::allocator<std::string>>::size_type>(num) - 3] = game.playerTurn;
+                game.changePlayerTurn(game);
+            }
+            else {
+                cout << "Posicao ja ocupada" << endl;
+            }
+           
+         
+        }
+        else if (num <= 8) {
+            if (game.board[2][static_cast<std::vector<std::string, std::allocator<std::string>>::size_type>(num) - 6] == " ") {
+                game.board[2][static_cast<std::vector<std::string, std::allocator<std::string>>::size_type>(num) - 6] = game.playerTurn;
+                game.changePlayerTurn(game);
 
-	cout << "Digite o nome do player 1:\n";
-	cin >> game.player1Name;
-	
+            }
+            else {
+                cout << "Posicao ja ocupada"<< endl;
+            }
+            
+        }
 
-	cout << "Digite o nome do player 2:\n";
-	cin >> game.player2Name;
-	cout << endl;
-
+    } while (true);
+    
+    
+   
 }
 
 
 
-void Game::table() {
-    vector<vector<string>> board(3, vector<string>(3, " "));
 
-    // Configuração inicial do tabuleiro de jogo da velha (opcional)
-    board[0][0] = "X";
-    board[0][1] = "O";
-    board[0][2] = "X";
-    board[1][0] = "O";
-    board[1][1] = "X";
-    board[1][2] = "O";
-    board[2][0] = "X";
-    board[2][1] = "X";
-    board[2][2] = "O";
-
-    // Exibir o tabuleiro
-    for (int i = 0; i < board.size(); i++) {
-        for (int j = 0; j < board[i].size(); j++) {
-            cout << board[i][j];
-            if (j < board[i].size() - 1) cout << " | "; // Separador de colunas
+void Game::table(Game& game) {
+   
+    
+    for (int i = 0; i < game.board.size(); i++) {
+        for (int j = 0; j < game.board.size(); j++) {
+            cout << game.board[i][j];
+            if (j < game.board.size() - 1) cout << " | "; 
         }
         std::cout << std::endl;
-        if (i < board.size() - 1) cout << "---------" << endl; // Separador de linhas
+        if (i < game.board.size() - 1) cout << "---------" << endl; 
     }
+}
+
+void Game::changePlayerTurn(Game& game) {
+    game.playerTurn = (game.playerTurn == "X") ? "O" : "X";
+}
+
+void Game::checkWinner(Game& game) {
+
+
+
+
+}
+void Game::restartGame(Game& game) {
+
+
+
+
 }

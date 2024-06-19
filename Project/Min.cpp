@@ -6,20 +6,18 @@ using namespace std;
 
 
 int main() {
-	int option = 1;
-	Game game;
-	/*	game.startGame(game);*/
-	game.table();
+	string player1Name;
+	string player2Name;
+	string playerTurn = "X";
+    vector<vector<string>> boardReal(3, vector<string>(3, " "));
+	cout << "Informe o nome do player 1 : " << endl;
+	cin >> player1Name;
+	cout << "Informe o nome do player  : " << endl;
+	cin >> player2Name;
+	Game game(player1Name,player2Name,playerTurn,boardReal);
+		game.game(game);
 
 
-	//do {
-
-	//
-
-
-
-	//} while (option != 0);
-	//
 
 
 
