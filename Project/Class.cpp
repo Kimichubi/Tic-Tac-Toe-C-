@@ -19,6 +19,7 @@ void Game::game(Game& game) {
         if (num <= 2) {
             if(game.board[0][num] == " "){
                 game.board[0][num] = game.playerTurn;
+                game.checkWinner(game);
                 game.changePlayerTurn(game);
             }
             else {
@@ -28,8 +29,9 @@ void Game::game(Game& game) {
 
         }
         else if (num <= 5) {
-            if(game.board[1][static_cast<std::vector<std::string, std::allocator<std::string>>::size_type>(num) - 3] == " "){
-                game.board[1][static_cast<std::vector<std::string, std::allocator<std::string>>::size_type>(num) - 3] = game.playerTurn;
+            if(game.board[1][num - 3] == " "){
+                game.board[1][num - 3] = game.playerTurn;
+                game.checkWinner(game);
                 game.changePlayerTurn(game);
             }
             else {
@@ -39,8 +41,9 @@ void Game::game(Game& game) {
          
         }
         else if (num <= 8) {
-            if (game.board[2][static_cast<std::vector<std::string, std::allocator<std::string>>::size_type>(num) - 6] == " ") {
-                game.board[2][static_cast<std::vector<std::string, std::allocator<std::string>>::size_type>(num) - 6] = game.playerTurn;
+            if (game.board[2][num - 6] == " ") {
+                game.board[2][num - 6] = game.playerTurn;
+                game.checkWinner(game);
                 game.changePlayerTurn(game);
 
             }
@@ -49,8 +52,15 @@ void Game::game(Game& game) {
             }
             
         }
+      
 
-    } while (true);
+    } while (game.winner == false);
+
+
+    if (game.winner == true) {
+        game.table(game);
+        cout << "Parabanes jogador : " << game.nameWinner << " Voce ganhou!" << endl;
+    }
     
     
    
@@ -78,13 +88,48 @@ void Game::changePlayerTurn(Game& game) {
 
 void Game::checkWinner(Game& game) {
 
+    for (int i = 0; i < game.board.size(); i++) {
+        for (int j = 0; j < game.board.size(); j++) {
+
+            if (game.board[i][j] == "X" && game.board[i][j + 1] == "X" && game.board[i][j + 2] == "X") {
+                game.winner = true;
+                game.nameWinner = "X";
+                break;
+            }
+            else if (game.board[i][j] == "O" && game.board[i][j + 1] == "O" && game.board[i][j + 2] == "O") {
+                game.winner = true;
+                game.nameWinner = "O";
+                break;
+            }
+            else {
+                break;
+            }
+
+        }
+     }
+
+    int numberToColum = 0;
+
+    for (int i = 0; i < game.board.size(); i++) {
+
+            if (game.board[numberToColum][i] == "X" && game.board[numberToColum + 1][i] == "X" && game.board[numberToColum + 2][i] == "X") {
+                game.winner = true;
+                game.nameWinner = "X";
+                break;
+            }
+            else if (game.board[numberToColum][i] == "O" && game.board[numberToColum + 1][i] == "O" && game.board[numberToColum + 2][i] == "O") {
+                game.winner = true;
+                game.nameWinner = "O";
+                break;
+            }
+           
+    }
+
+
+    }
 
 
 
-}
-void Game::restartGame(Game& game) {
 
 
 
-
-}

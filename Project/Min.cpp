@@ -12,9 +12,9 @@ int main() {
     vector<vector<string>> boardReal(3, vector<string>(3, " "));
 	cout << "Informe o nome do player 1 : " << endl;
 	cin >> player1Name;
-	cout << "Informe o nome do player  : " << endl;
+	cout << "Informe o nome do player 2 : " << endl;
 	cin >> player2Name;
-	Game game(player1Name,player2Name,playerTurn,boardReal);
+	Game game(player1Name, player2Name, playerTurn, boardReal, false, "");
 		game.game(game);
 
 
