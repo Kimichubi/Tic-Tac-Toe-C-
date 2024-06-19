@@ -87,28 +87,23 @@ void Game::changePlayerTurn(Game& game) {
 }
 
 void Game::checkWinner(Game& game) {
+    int numberToColum = 0;
 
     for (int i = 0; i < game.board.size(); i++) {
-        for (int j = 0; j < game.board.size(); j++) {
-
-            if (game.board[i][j] == "X" && game.board[i][j + 1] == "X" && game.board[i][j + 2] == "X") {
+            if (game.board[i][numberToColum] == "X" && game.board[i][numberToColum + 1] == "X" && game.board[i][numberToColum + 2] == "X") {
                 game.winner = true;
                 game.nameWinner = "X";
                 break;
             }
-            else if (game.board[i][j] == "O" && game.board[i][j + 1] == "O" && game.board[i][j + 2] == "O") {
+            else if (game.board[i][numberToColum] == "O" && game.board[i][numberToColum + 1] == "O" && game.board[i][numberToColum + 2] == "O") {
                 game.winner = true;
                 game.nameWinner = "O";
                 break;
             }
-            else {
-                break;
-            }
-
-        }
+         
      }
 
-    int numberToColum = 0;
+
 
     for (int i = 0; i < game.board.size(); i++) {
 
